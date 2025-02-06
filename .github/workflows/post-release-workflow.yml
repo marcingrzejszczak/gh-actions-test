@@ -21,7 +21,7 @@ jobs:
       - name: Run Post Release Tasks
         uses: marcingrzejszczak/micrometer-release@main
         with:
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_token: ${{ secrets.TOKEN }}
           github_ref_name: ${{ github.event.inputs.github_ref_name }}
           previous_ref_name: ${{ github.event.inputs.previous_ref_name }}
           spring_release_gchat_webhook_url: ""
