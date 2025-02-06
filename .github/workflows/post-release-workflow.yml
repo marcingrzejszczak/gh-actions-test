@@ -1,0 +1,29 @@
+name: Post Release Tasks
+
+on:
+  workflow_dispatch:
+    inputs:
+      github_ref_name:
+        description: "Current release version (e.g., 1.15.3)"
+        required: true
+      previous_ref_name:
+        description: "Previous release version (e.g., 1.14.8)"
+        required: false
+
+jobs:
+  post_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Post Release Tasks
+        uses: marcingrzejszczak/micrometer-release@1bd8de97365bbfcee3203c6933c44477e12a1708
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          github_ref_name: ${{ github.event.inputs.github_ref_name }}
+          previous_ref_name: ${{ github.event.inputs.previous_ref_name }}
+          spring_release_gchat_webhook_url: ""
+          bluesky_handle: ""
+          bluesky_password: ""
