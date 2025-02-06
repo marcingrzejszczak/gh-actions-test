@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Post Release Tasks
-        uses: marcingrzejszczak/micrometer-release@1bd8de97365bbfcee3203c6933c44477e12a1708
+        uses: marcingrzejszczak/micrometer-release@main
         with:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           github_ref_name: ${{ github.event.inputs.github_ref_name }}
