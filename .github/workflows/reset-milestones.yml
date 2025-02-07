@@ -1,0 +1,46 @@
+name: Manage Milestones
+
+on:
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  manage-milestones:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set milestone for issue #1
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 1,
+              milestone: 1
+            });
+
+      - name: Set milestone for issues #5, #4, and #2
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issues = [5, 4, 2];
+            for (const issueNumber of issues) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                milestone: 2
+              });
+            }
+
+      - name: Delete milestone #6
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.deleteMilestone({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              milestone_number: 6
+            });
