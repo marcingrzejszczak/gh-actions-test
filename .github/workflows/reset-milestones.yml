@@ -6,11 +6,13 @@ on:
 jobs:
   manage-milestones:
     runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
     steps:
       - name: Set milestone for issue #1
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ env.TOKEN }}
           script: |
             await github.rest.issues.update({
               owner: context.repo.owner,
@@ -22,7 +24,7 @@ jobs:
       - name: Set milestone for issues #5, #4, and #2
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ env.TOKEN }}
           script: |
             const issues = [5, 4, 2];
             for (const issueNumber of issues) {
@@ -37,7 +39,7 @@ jobs:
       - name: Delete milestone #6
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ env.TOKEN }}
           script: |
             await github.rest.issues.deleteMilestone({
               owner: context.repo.owner,
