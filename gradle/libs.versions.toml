@@ -1,0 +1,28 @@
+[versions]
+junit = "5.11.4"
+logback = "1.5.16"
+slf4j = "1.7.36"
+assertj = "3.27.3"
+mockito = "5.15.2"
+wiremock = "3.10.0"
+pitestJunit5="1.2.1"
+pmdTool="7.0.0"
+javaFormatForPlugins = "0.0.43"
+
+[libraries]
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+javaFormatForPlugins = { module = "io.spring.javaformat:spring-javaformat-checkstyle", version.ref = "javaFormatForPlugins" }
+junitBom = { module = "org.junit:junit-bom", version.ref = "junit" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+pitestJunit5 = { module = "org.pitest:pitest-junit5-plugin", version.ref = "pitestJunit5" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+wiremock = { module = "org.wiremock:wiremock-standalone", version.ref = "wiremock" }
+
+# plugin dependencies
+plugin-javaformat = { module = "io.spring.javaformat:spring-javaformat-gradle-plugin", version = "0.0.43" }
+plugin-license = { module = "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin", version = "0.16.1" }
+plugin-noHttp = { module = "io.spring.nohttp:nohttp-gradle", version = "0.0.11" }
+plugin-pitest = { module = "info.solidsoft.gradle.pitest:gradle-pitest-plugin", version = "1.15.0" }
+plugin-jib = { module = "com.google.cloud.tools.jib:com.google.cloud.tools.jib.gradle.plugin", version = "3.4.4" }
+plugin-shadow = { module = "com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin", version = "8.1.1" }
