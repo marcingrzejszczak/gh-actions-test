@@ -13,13 +13,14 @@ code/
 .project
 .settings/
 .sts4-cache/
+.kotlin/
 bin/
 .factorypath
 .vscode
 .DS_Store
 .java-version
 
-github-changelog-generator.jar
-changelog.md
-old_changelog.md
-changelog-output.md
+# jcstress
+generated/
+results/
+jcstress-results-*.bin.gz

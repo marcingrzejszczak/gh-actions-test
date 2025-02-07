@@ -1,0 +1,73 @@
+description 'Test compatibility kit for extensions of Micrometer'
+
+testing {
+    suites {
+        java11Test(JvmTestSuite) {
+            test {
+                useJUnitJupiter()
+            }
+            sources {
+                java {
+                    srcDirs = ['src/test/java11']
+                }
+            }
+            dependencies {
+                implementation project()
+                implementation project(':micrometer-java11')
+            }
+
+        }
+    }
+}
+
+compileJava11TestJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+check {
+    dependsOn(testing.suites.java11Test)
+}
+
+dependencies {
+    api project(':micrometer-core')
+    api project(':micrometer-observation')
+    api project(':micrometer-observation-test')
+
+    api 'org.assertj:assertj-core'
+
+    api libs.junitJupiter
+    api 'org.junit.jupiter:junit-jupiter-engine'
+
+    api 'ru.lanwen.wiremock:wiremock-junit5'
+    api 'com.github.tomakehurst:wiremock-jre8-standalone'
+
+    implementation 'org.awaitility:awaitility'
+
+    testImplementation project(':micrometer-observation-test')
+    testImplementation project(':micrometer-jakarta9')
+
+    testImplementation 'org.jsr107.ri:cache-ri-impl'
+
+    // We have tests for the many features that are optional dependencies, so add
+    // them here just like a user would need to.
+    testImplementation 'com.google.guava:guava'
+    testImplementation 'com.github.ben-manes.caffeine:caffeine'
+    testImplementation 'net.sf.ehcache:ehcache'
+    testImplementation 'javax.cache:cache-api'
+    testImplementation 'jakarta.jms:jakarta.jms-api'
+    testImplementation 'com.hazelcast:hazelcast'
+    testImplementation 'com.squareup.okhttp3:okhttp'
+    testImplementation 'org.apache.httpcomponents:httpclient'
+    testImplementation 'org.apache.httpcomponents:httpasyncclient'
+    testImplementation 'org.apache.httpcomponents.client5:httpclient5'
+    testImplementation 'org.apache.activemq:artemis-junit-5'
+    testImplementation 'org.apache.activemq:artemis-jakarta-client'
+    testImplementation libs.jetty9Client
+    testImplementation libs.jetty9Server
+    testImplementation libs.jetty9Servlet
+    testImplementation 'org.glassfish.jersey.core:jersey-server'
+    testImplementation libs.jersey2TestFrameworkJdkHttp
+    // necessary for Jersey test framework
+    testRuntimeOnly 'org.glassfish.jersey.inject:jersey-hk2'
+}

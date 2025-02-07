@@ -1,0 +1,25 @@
+description 'Module containing common code'
+
+dependencies {
+    // log monitoring
+    optionalApi 'ch.qos.logback:logback-classic'
+
+    // Aspects
+    optionalApi libs.aspectjrt
+
+    // JUnit 5
+    testImplementation libs.junitJupiter
+    testImplementation 'org.assertj:assertj-core'
+}
+
+jar {
+    bundle {
+
+        bnd '''\
+        Import-Package: \
+            org.aspectj.*;resolution:=dynamic,\
+            javax.annotation.*;resolution:=optional;version="${@}",\
+            *
+        '''.stripIndent()
+    }
+}

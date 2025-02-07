@@ -1,0 +1,18 @@
+description = 'Publishes Micrometer meters in OTLP format'
+
+dependencies {
+    api project(':micrometer-core')
+
+    implementation libs.openTelemetry.proto
+
+    testImplementation project(':micrometer-test')
+    testImplementation libs.systemStubsJupiter
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation libs.mockitoCore5
+}
+
+dockerTest {
+    systemProperty 'otel-collector-image.version', '0.104.0'
+}
