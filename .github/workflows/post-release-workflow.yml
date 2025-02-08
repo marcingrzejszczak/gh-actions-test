@@ -15,8 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        wi- name: Checkout code
+        uses: actions/checkout@v4th:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Git Config
+        run: git config --global --add safe.directory /github/workspace
 
       - name: Run Post Release Tasks
         uses: marcingrzejszczak/micrometer-release@main
