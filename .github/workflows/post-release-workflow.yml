@@ -16,8 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        wi- name: Checkout code
-        uses: actions/checkout@v4th:
+        with:
           fetch-depth: 0
           persist-credentials: false
 
