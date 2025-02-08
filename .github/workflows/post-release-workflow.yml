@@ -16,15 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'  # or whatever version you need
-          distribution: 'temurin'  # or another distribution
 
       - name: Run Post Release Tasks
         uses: marcingrzejszczak/micrometer-release@main
