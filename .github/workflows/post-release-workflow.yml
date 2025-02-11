@@ -3,9 +3,6 @@ name: Post Release Tasks
 on:
   workflow_dispatch:
     inputs:
-      github_ref_name:
-        description: "Current release version (e.g., v1.15.3)"
-        required: true
       previous_ref_name:
         description: "Previous release version (e.g., v1.14.8)"
         required: false
@@ -21,7 +18,6 @@ jobs:
         uses: marcingrzejszczak/micrometer-release@main
         with:
           gh_token: ${{ secrets.TOKEN }}
-          github_ref_name: ${{ github.event.inputs.github_ref_name }}
           previous_ref_name: ${{ github.event.inputs.previous_ref_name }}
           spring_release_gchat_webhook_url: ""
           bluesky_handle: ""
