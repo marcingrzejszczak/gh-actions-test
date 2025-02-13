@@ -1,0 +1,29 @@
+name: Release Train (for a single project)
+
+on:
+  workflow_dispatch:
+    inputs:
+      train_versions:
+        description: "Comma separated list of versions (e.g. 1.13.2,1.14.8,1.15.9-M2)"
+        required: true
+      artifact_to_check:
+        description: "What's the artifact id (io.micrometer:artifactId) to check in Maven Central if the sync after the release was successful (e.g. micrometer-bom)"
+        required: true
+
+jobs:
+  post_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Post Release Tasks
+        uses: micrometer-metrics/micrometer-github-workflows@main
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          spring_release_gchat_webhook_url: ${{ secrets.SPRING_RELEASE_GCHAT_WEBHOOK_URL }}
+          bluesky_handle: ${{ secrets.BLUESKY_HANDLE }}
+          bluesky_password: ${{ secrets.BLUESKY_PASSWORD }}
+          train_versions: ${{ github.event.inputs.train_versions }}
+          artifact_to_check: ${{ github.event.inputs.artifact_to_check }}
