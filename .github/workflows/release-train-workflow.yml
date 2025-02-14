@@ -21,9 +21,10 @@ jobs:
       - name: Run Post Release Tasks
         uses: micrometer-metrics/micrometer-github-workflows@main
         with:
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_token: ${{ secrets.TOKEN }}
           spring_release_gchat_webhook_url: ${{ secrets.SPRING_RELEASE_GCHAT_WEBHOOK_URL }}
           bluesky_handle: ${{ secrets.BLUESKY_HANDLE }}
           bluesky_password: ${{ secrets.BLUESKY_PASSWORD }}
           train_versions: ${{ github.event.inputs.train_versions }}
           artifact_to_check: ${{ github.event.inputs.artifact_to_check }}
+          circle_ci_token: ${{ secrets.CIRCLE_CI_TOKEN }}
