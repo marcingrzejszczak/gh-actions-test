@@ -88,6 +88,42 @@ jobs:
               await deleteMilestone(milestone);
             }
 
+      - name: Reopen closed milestones
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ env.TOKEN }}
+          script: |
+            async function reopenMilestone(title) {
+              try {
+                const milestones = await github.rest.issues.listMilestones({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  state: 'all'
+                });
+            
+                const milestone = milestones.data.find(m => m.title === title);
+                if (milestone) {
+                  await github.rest.issues.updateMilestone({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    milestone_number: milestone.number,
+                    state: 'open'
+                  });
+                  console.log(`Successfully reopened milestone "${title}"`);
+                } else {
+                  console.log(`Milestone "${title}" not found`);
+                }
+              } catch (error) {
+                console.log(`Error reopening milestone "${title}":`, error);
+              }
+            }
+
+            const milestonesToReopen = ['0.1.1', '0.2.0-M2', '1.0.0-RC1'];
+            
+            for (const milestone of milestonesToReopen) {
+              await reopenMilestone(milestone);
+            }
+
       - name: Reset issues state
         uses: actions/github-script@v7
         with:
