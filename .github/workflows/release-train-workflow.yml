@@ -20,6 +20,8 @@ jobs:
 
       - name: Run Post Release Tasks
         uses: micrometer-metrics/micrometer-github-workflows@main
+        env:
+          CENTRAL_URL: https://httpbin.org/anything/
         with:
           gh_token: ${{ secrets.TOKEN }}
           spring_release_gchat_webhook_url: ${{ secrets.SPRING_RELEASE_GCHAT_WEBHOOK_URL }}
