@@ -14,6 +14,82 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create v0.1.1 release and tag if needed
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.TOKEN }}
+          script: |
+            async function checkTagExists(tag) {
+              try {
+                await github.rest.git.getRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `tags/${tag}`
+                });
+                return true;
+              } catch (error) {
+                return false;
+              }
+            }
+            
+            async function checkReleaseExists(tag) {
+              try {
+                await github.rest.repos.getReleaseByTag({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag: tag
+                });
+                return true;
+              } catch (error) {
+                return false;
+              }
+            }
+            
+            const tagName = 'v0.1.1';
+            const releaseName = '0.1.1';
+            
+            const tagExists = await checkTagExists(tagName);
+            const releaseExists = await checkReleaseExists(tagName);
+            
+            if (!tagExists && !releaseExists) {
+              // Create tag first
+              const latestCommit = await github.rest.repos.getBranch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                branch: 'main'
+              });
+            
+              await github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `refs/tags/${tagName}`,
+                sha: latestCommit.data.commit.sha
+              });
+              console.log(`Created tag ${tagName}`);
+            
+              // Then create release
+              await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tagName,
+                name: releaseName,
+                body: 'Release notes for version 0.1.1'
+              });
+              console.log(`Created release ${releaseName}`);
+            } else if (tagExists && !releaseExists) {
+              // Only create release
+              await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tagName,
+                name: releaseName,
+                body: ''
+              });
+              console.log(`Created release ${releaseName}`);
+            } else {
+              console.log('Both tag and release already exist, no action needed');
+            }
+
       - name: Run Post Release Tasks
         uses: micrometer-metrics/micrometer-github-workflows@main
         with:
