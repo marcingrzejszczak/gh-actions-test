@@ -3,6 +3,9 @@ name: Reset milestones and issues
 on:
   workflow_dispatch:  # Manual trigger
 
+permissions:
+  contents: write
+
 jobs:
   reset-repo:
     runs-on: ubuntu-latest
