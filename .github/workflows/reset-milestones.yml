@@ -19,7 +19,8 @@ jobs:
 
       - name: Reset and force push
         run: |
-          git reset --hard 9d9e37bdf40a7082dff528c2c65797c647487ddc  # Commit before dependabot PR
+          NEXT_COMMIT=$(git log --reverse --pretty=%H 3e2a9f4dc19edeecf77c9b5c4761197fc52e59c6..HEAD | head -1)
+          git reset --hard $NEXT_COMMIT
           git push --force
 
       - name: Delete tags and releases
