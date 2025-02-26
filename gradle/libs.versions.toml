@@ -60,7 +60,7 @@ maven-resolver = "1.9.22"
 mockito4 = "4.11.0"
 mockito5 = "5.11.0"
 mongo = "4.11.5"
-netty = "4.1.119.Final"
+netty = "4.1.117.Final"
 newrelic-api = "5.14.0"
 # Kotlin 1.7 sample will fail from OkHttp 4.12.0 due to okio dependency being a Kotlin 1.9 module
 okhttp = "4.11.0"
@@ -96,7 +96,7 @@ cloudwatch2 = { module = "software.amazon.awssdk:cloudwatch", version.ref = "clo
 colt = { module = "colt:colt", version.ref = "colt" }
 commonsPool2 = "org.apache.commons:commons-pool2:2.12.1"
 # Delibaretly so that dependabot PR gets then set up
-contextPropagation = { module = "io.micrometer:context-propagation", version = "1.1.2" }
+contextPropagation = { module = "io.micrometer:context-propagation", version = "1.1.0" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 daggerCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 dropwizardMetricsCore = { module = "io.dropwizard.metrics:metrics-core", version.ref = "dropwizard-metrics" }
