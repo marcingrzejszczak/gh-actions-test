@@ -9,24 +9,22 @@ permissions:
 jobs:
   reset-repo:
     runs-on: ubuntu-latest
-    env:
-      TOKEN: ${{ secrets.TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
 
       - name: Reset and force push
         run: |
-          NEXT_COMMIT=$(git log --reverse --pretty=%H 2422818c59da420e9be6eaf2ac25702a5e54e1fc..HEAD | head -1)
+          NEXT_COMMIT=$(git log --reverse --pretty=%H 9922d12274192bf4feba8a02f6710c34027a7099..HEAD | head -1)
           git reset --hard $NEXT_COMMIT
           git push --force
 
       - name: Delete tags and releases
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           script: |
             async function deleteRelease(tagName) {
               try {
@@ -72,7 +70,7 @@ jobs:
       - name: Delete milestones
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           script: |
             async function deleteMilestone(title) {
               try {
@@ -105,7 +103,7 @@ jobs:
       - name: Reopen closed milestones
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           script: |
             async function reopenMilestone(title) {
               try {
@@ -141,7 +139,7 @@ jobs:
       - name: Reset issues state
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           script: |
             // Define issue states
             const issueStates = [
