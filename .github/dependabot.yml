@@ -55,3 +55,4 @@ updates:
         update-types:
           - version-update:semver-major
     open-pull-requests-limit: 50
+# Triggering dependabot
