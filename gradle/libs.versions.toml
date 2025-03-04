@@ -1,12 +1,12 @@
 [versions]
-activemq-artemis = "2.38.0"
+activemq-artemis = "2.39.0"
 application-insights = "2.6.4"
-archunit = "1.3.0"
+archunit = "1.4.0"
 asmForPlugins = "7.3.1"
 # 1.9.20.1 is the last release that accepts jdk 11 for building
 aspectjweaver = "1.9.22.1"
 assertj = "3.27.3"
-awaitility = "4.2.2"
+awaitility = "4.3.0"
 caffeine = "2.9.3"
 cloudwatch2 = "2.30.29"
 colt = "1.2.0"
@@ -17,7 +17,7 @@ dynatrace-utils = "2.2.1"
 ehcache2 = "2.10.9.2"
 ehcache3 = "3.10.8"
 gmetric4j = "1.0.10"
-google-cloud-monitoring = "3.58.0"
+google-cloud-monitoring = "3.59.0"
 grpc = "1.58.0"
 grpcKotlin = "1.4.1"
 guava = "r09"
@@ -43,18 +43,18 @@ jaxb = "2.3.1"
 jetty9 = "9.4.57.v20241219"
 jetty11 = "11.0.16"
 jetty12 = "12.0.6"
-jersey3 = "3.1.10"
+jersey3 = "2.46"
 jmh = "1.37"
 # 3.14.x is the newest version of OSS jOOQ that supports Java 8
 # latest version of jOOQ to run tests against
-jooqNew = "3.19.18"
+jooqNew = "3.20.1"
 jsr107 = "1.1.1"
 jsr305 = "3.0.2"
-junit = "5.11.4"
+junit = "5.12.0"
 kafka = "2.8.2"
 kafka-junit = "4.2.10"
 latency-utils = "2.0.3"
-logback-latest = "1.5.16"
+logback-latest = "1.5.17"
 log4j = "2.24.3"
 maven-resolver = "1.9.22"
 mockito4 = "4.11.0"
@@ -63,7 +63,7 @@ mongo = "4.11.5"
 netty = "4.1.117.Final"
 newrelic-api = "5.14.0"
 # Kotlin 1.7 sample will fail from OkHttp 4.12.0 due to okio dependency being a Kotlin 1.9 module
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 postgre = "42.7.5"
 prometheus = "1.3.6"
 prometheusSimpleClient = "0.16.0"
@@ -109,9 +109,9 @@ ehcache3 = { module = "org.ehcache:ehcache", version.ref = "ehcache3" }
 felixFramework = "org.apache.felix:org.apache.felix.framework:7.0.5"
 felixScr = "org.apache.felix:org.apache.felix.scr:2.2.12"
 gmetric4j = { module = "info.ganglia.gmetric4j:gmetric4j", version.ref = "gmetric4j" }
-googleCloudLibrariesBom = { module = "com.google.cloud:libraries-bom", version = "26.54.0" }
+googleCloudLibrariesBom = { module = "com.google.cloud:libraries-bom", version = "26.55.0" }
 googleCloudMonitoring = { module = "com.google.cloud:google-cloud-monitoring", version.ref = "google-cloud-monitoring" }
-googleOauth2Http = { module = "com.google.auth:google-auth-library-oauth2-http", version = "1.32.1"}
+googleOauth2Http = { module = "com.google.auth:google-auth-library-oauth2-http", version = "1.33.1"}
 grpcApi = { module = "io.grpc:grpc-api", version.ref = "grpc" }
 grpcCore = { module = "io.grpc:grpc-core", version.ref = "grpc" }
 grpcInprocess = { module = "io.grpc:grpc-inprocess", version.ref = "grpc" }
@@ -135,7 +135,7 @@ hystrix = { module = "com.netflix.hystrix:hystrix-core", version.ref = "hystrix"
 jacksonDatabind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-databind" }
 jakarta-annotationApi = { module = "jakarta.annotation:jakarta.annotation-api", version = "3.0.0" }
 jakarta-injectApi = { module = "jakarta.inject:jakarta.inject-api", version = "2.0.1" }
-jakarta-jmsApi = { module = "jakarta.jms:jakarta.jms-api", version = "3.0.0" }
+jakarta-jmsApi = { module = "jakarta.jms:jakarta.jms-api", version = "3.1.0" }
 jakarta-servletApi = { module = "jakarta.servlet:jakarta.servlet-api", version = "5.0.0" }
 javalin = { module = "io.javalin:javalin", version = "5.6.5" }
 javax-cacheApi = { module = "javax.cache:cache-api", version.ref = "javax-cache" }
@@ -150,15 +150,15 @@ jetty11Server = { module = "org.eclipse.jetty:jetty-server", version.ref = "jett
 jetty12Server = { module = "org.eclipse.jetty:jetty-server", version.ref = "jetty12" }
 jetty12Client = { module = "org.eclipse.jetty:jetty-client", version.ref = "jetty12" }
 jersey2Server = { module = "org.glassfish.jersey.core:jersey-server", version = "2.46" }
-jersey2Hk2 = { module = "org.glassfish.jersey.inject:jersey-hk2", version = "2.45" }
+jersey2Hk2 = { module = "org.glassfish.jersey.inject:jersey-hk2", version = "2.46" }
 jersey2TestFrameworkInmemory = { module = "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory", version = "2.46" }
-jersey2TestFrameworkJdkHttp = { module = "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jdk-http", version = "2.45" }
+jersey2TestFrameworkJdkHttp = { module = "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jdk-http", version = "2.46" }
 jersey3ContainerJdkHttp = { module = "org.glassfish.jersey.containers:jersey-container-jdk-http", version.ref = "jersey3" }
 jersey3Hk2 = { module = "org.glassfish.jersey.inject:jersey-hk2", version.ref = "jersey3" }
 jersey3TestFrameworkJdkHttp = { module = "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jdk-http", version.ref = "jersey3" }
 jmhCore = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
 jmhAnnotationProcessor = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
-jooq = { module = "org.jooq:jooq", version = "3.14.16" }
+jooq = { module = "org.jooq:jooq", version = "3.20.1" }
 jooqLatest = { module = "org.jooq:jooq", version.ref = "jooqNew" }
 jsonPath = { module = "com.jayway.jsonpath:json-path", version = "2.9.0" }
 jsr107 = { module = "org.jsr107.ri:cache-ri-impl", version.ref = "jsr107" }
@@ -170,10 +170,10 @@ junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher" 
 kafkaClients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka" }
 kafkaStreams = { module = "org.apache.kafka:kafka-streams", version.ref = "kafka" }
 kafkaJunit = { module = "com.github.charithe:kafka-junit", version.ref = "kafka-junit" }
-kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.7.3" }
+kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.10.1" }
 latencyUtils = { module = "org.latencyutils:LatencyUtils", version.ref = "latency-utils" }
 lmaxDisruptor = "com.lmax:disruptor:3.4.4"
-logback12 = { module = "ch.qos.logback:logback-classic", version = "1.2.13" }
+logback12 = { module = "ch.qos.logback:logback-classic", version = "1.5.17" }
 logbackLatest = {module = "ch.qos.logback:logback-classic", version.ref = "logback-latest" }
 log4j = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
 mavenResolverConnectorBasic = { module = "org.apache.maven.resolver:maven-resolver-connector-basic", version.ref = "maven-resolver" }
@@ -236,6 +236,6 @@ plugin-bndForJava17 = "biz.aQute.bnd:biz.aQute.bnd.gradle:7.1.0"
 
 [plugins]
 kotlin19 = { id = "org.jetbrains.kotlin.jvm", version = "1.9.25" }
-kotlin17 = { id = "org.jetbrains.kotlin.jvm", version = "1.7.22" }
+kotlin17 = { id = "org.jetbrains.kotlin.jvm", version = "1.9.25" }
 jcstress = { id = "io.github.reyerizo.gradle.jcstress", version = "0.8.15" }
 aspectj = { id = 'io.freefair.aspectj.post-compile-weaving', version = '8.12.2' }
