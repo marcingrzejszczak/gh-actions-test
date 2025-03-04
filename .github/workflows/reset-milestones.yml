@@ -17,7 +17,7 @@ jobs:
 
       - name: Reset and force push
         run: |
-          NEXT_COMMIT=$(git log --reverse --pretty=%H 690019f8d6a40fa8a75f9700c5895c2e9ca1d091..HEAD | head -1)
+          NEXT_COMMIT=$(git log --reverse --pretty=%H d75e2f40b10b0e068021edd94edd3fbbfcad168a..HEAD | head -1)
           git reset --hard $NEXT_COMMIT
           git push --force
 
