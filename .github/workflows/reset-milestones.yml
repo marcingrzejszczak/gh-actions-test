@@ -5,6 +5,8 @@ on:
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   reset-repo:
@@ -17,9 +19,69 @@ jobs:
 
       - name: Reset and force push
         run: |
-          NEXT_COMMIT=$(git log --reverse --pretty=%H 690019f8d6a40fa8a75f9700c5895c2e9ca1d091..HEAD | head -1)
+          NEXT_COMMIT=$(git log --reverse --pretty=%H d75e2f40b10b0e068021edd94edd3fbbfcad168a..HEAD | head -1)
           git reset --hard $NEXT_COMMIT
           git push --force
+
+      - name: Delete unwanted issues and PRs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.TOKEN }}
+          script: |
+            // Get the actor/user running this workflow
+            const actor = context.actor;
+            console.log(`Current user: ${actor}`);
+            
+            // Get all open and closed issues
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all',
+              per_page: 100
+            });
+            
+            // Filter out pull requests and issues not created by the actor
+            // and not in our defined list of issues to preserve
+            const issuesToDelete = issues.filter(issue => {
+              // Keep issues with numbers 1-18 as defined in your reset logic
+              if (issue.number >= 1 && issue.number <= 18) {
+                return false;
+              }
+            
+              // Delete if not created by actor
+              return issue.user.login !== actor;
+            });
+            
+            console.log(`Found ${issuesToDelete.length} issues/PRs to delete`);
+            
+            // Process PRs first (they need to be closed before deletion)
+            for (const item of issuesToDelete) {
+              try {
+                // Check if it's a PR
+                if (item.pull_request) {
+                  // Close PR first if it's open
+                  if (item.state === 'open') {
+                    console.log(`Closing PR #${item.number}`);
+                    await github.rest.pulls.update({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      pull_number: item.number,
+                      state: 'closed'
+                    });
+                  }
+                }
+            
+                // Delete the issue/PR
+                console.log(`Deleting issue/PR #${item.number} created by ${item.user.login}`);
+                await github.rest.issues.delete({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: item.number
+                });
+              } catch (error) {
+                console.log(`Error processing issue/PR #${item.number}:`, error);
+              }
+            }
 
       - name: Delete tags and releases
         uses: actions/github-script@v7
