@@ -19,7 +19,7 @@ jobs:
 
       - name: Reset and force push
         run: |
-          NEXT_COMMIT=$(git log --reverse --pretty=%H d75e2f40b10b0e068021edd94edd3fbbfcad168a..HEAD | head -1)
+          NEXT_COMMIT=$(git log --reverse --pretty=%H f11e48546e526393ff628151c3908859b80bf6ad..HEAD | head -1)
           git reset --hard $NEXT_COMMIT
           git push --force
 
@@ -122,7 +122,7 @@ jobs:
               }
             }
 
-            const tagsToDelete = ['v0.1.1', 'v0.2.0-M2', 'v1.0.0-RC1'];
+            const tagsToDelete = ['v0.1.1', 'v0.2.0-M2', 'v1.0.0-RC1', 'v2.0.0'];
             
             for (const tag of tagsToDelete) {
               await deleteRelease(tag);
@@ -156,7 +156,7 @@ jobs:
               }
             }
 
-            const milestonesToDelete = ['0.1.2', '0.2.0-M3', '1.0.0'];
+            const milestonesToDelete = ['0.1.2', '0.2.0-M3', '1.0.0', '2.0.1'];
             
             for (const milestone of milestonesToDelete) {
               await deleteMilestone(milestone);
@@ -192,7 +192,7 @@ jobs:
               }
             }
 
-            const milestonesToReopen = ['0.1.1', '0.2.0-M2', '1.0.0-RC1'];
+            const milestonesToReopen = ['0.1.1', '0.2.0-M2', '1.0.0-RC1', '2.0.0'];
             
             for (const milestone of milestonesToReopen) {
               await reopenMilestone(milestone);
@@ -222,7 +222,9 @@ jobs:
               { number: 15, title: "Closed bug in generic 0.2.x", state: "closed", milestone: "0.2.x" },
               { number: 16, title: "Closed issue in generic 0.2.x", state: "closed", milestone: "0.2.x" },
               { number: 17, title: "Open issue in concrete 0.2.0-M2", state: "open", milestone: "0.2.0-M2" },
-              { number: 18, title: "Closed bug in concrete 0.2.0-M2", state: "closed", milestone: "0.2.0-M2" }
+              { number: 18, title: "Closed bug in concrete 0.2.0-M2", state: "closed", milestone: "0.2.0-M2" },
+              { number: 282, title: "Open bug in concrete 2.0.0", state: "open", milestone: "2.0.0" },
+              { number: 283, title: "Closed enhancement in concrete 2.0.0", state: "closed", milestone: "2.0.0" }
             ];
 
             async function getMilestoneNumber(title) {
