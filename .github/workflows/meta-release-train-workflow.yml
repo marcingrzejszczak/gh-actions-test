@@ -43,3 +43,4 @@ jobs:
           micrometer_versions: ${{ github.event.inputs.micrometer_versions }}
           tracing_versions: ${{ github.event.inputs.tracing_versions }}
           docs_gen_versions: ${{ github.event.inputs.docs_gen_versions }}
+          meta_release_enabled: true
