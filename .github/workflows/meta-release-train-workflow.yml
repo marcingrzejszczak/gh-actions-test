@@ -1,4 +1,4 @@
-name: Release Train (for a single project)
+name: Meta Release Train
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Post Release Tasks
+      - name: Run Meta Release Tasks
         uses: micrometer-metrics/micrometer-github-workflows@main
         env:
           CENTRAL_URL: https://httpbin.org/anything/

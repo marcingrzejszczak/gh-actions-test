@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Post Release Tasks
+      - name: Run Single Project Release Train Tasks
         uses: micrometer-metrics/micrometer-github-workflows@main
         env:
           CENTRAL_URL: https://httpbin.org/anything/
