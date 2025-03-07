@@ -32,6 +32,7 @@ jobs:
         uses: micrometer-metrics/micrometer-github-workflows@main
         env:
           CENTRAL_URL: https://httpbin.org/anything/
+          TEST_MODE: true
         with:
           gh_token: ${{ secrets.TOKEN }}
           spring_release_gchat_webhook_url: ${{ secrets.SPRING_RELEASE_GCHAT_WEBHOOK_URL }}
