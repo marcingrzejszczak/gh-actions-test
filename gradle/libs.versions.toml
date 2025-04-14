@@ -96,7 +96,7 @@ cloudwatch2 = { module = "software.amazon.awssdk:cloudwatch", version.ref = "clo
 colt = { module = "colt:colt", version.ref = "colt" }
 commonsPool2 = "org.apache.commons:commons-pool2:2.12.1"
 # Delibaretly so that dependabot PR gets then set up
-contextPropagation = { module = "io.micrometer:context-propagation", version = "1.1.2" }
+contextPropagation = { module = "io.micrometer:context-propagation", version = "1.1.3" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 daggerCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 dropwizardMetricsCore = { module = "io.dropwizard.metrics:metrics-core", version.ref = "dropwizard-metrics" }
