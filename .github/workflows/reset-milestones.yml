@@ -24,7 +24,7 @@ jobs:
           git push --force
 
       - name: Delete unwanted issues and PRs
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.TOKEN }}
           script: |
@@ -84,7 +84,7 @@ jobs:
             }
 
       - name: Delete tags and releases
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.TOKEN }}
           script: |
@@ -130,7 +130,7 @@ jobs:
             }
 
       - name: Delete milestones
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.TOKEN }}
           script: |
@@ -163,7 +163,7 @@ jobs:
             }
 
       - name: Reopen closed milestones
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.TOKEN }}
           script: |
@@ -199,7 +199,7 @@ jobs:
             }
 
       - name: Reset issues state
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.TOKEN }}
           script: |
